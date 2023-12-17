@@ -11,6 +11,9 @@
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
@@ -32,5 +35,25 @@
                 {{ $slot }}
             </main>
         </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+        <script src="https://cdn.ckeditor.com/ckeditor5/40.2.0/classic/ckeditor.js"></script>
+
+
+        <script>
+            $(document).ready(function() {
+                $('#tag_id').select2(); // Replace 'tags' with the ID of your select element
+            });
+        </script>
+
+        <script>
+            ClassicEditor
+                .create( document.querySelector( '#content' ) )
+                .catch( error => {
+                    console.error( error );
+                } );
+        </script>
+
     </body>
 </html>
