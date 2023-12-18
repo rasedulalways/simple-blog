@@ -13,7 +13,7 @@ class TagController extends Controller
      */
     public function index()
     {
-        $tags = Tag::orderBy( 'id', 'desc' )->paginate( 2 );
+        $tags = Tag::orderBy( 'id', 'desc' )->paginate( 10 );
         return view( 'tag.index', compact( 'tags' ) );
     }
 

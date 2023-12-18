@@ -25,7 +25,6 @@ class PostFactory extends Factory
             'title' => $title,
             'slug' => Str::slug( $title ),
             'content' => $this->faker->paragraphs(3, true),
-            'thumbnail' => $this->faker->imageUrl(),
             'status' => $this->faker->randomElement(['active', 'inactive']),
         ];
     }

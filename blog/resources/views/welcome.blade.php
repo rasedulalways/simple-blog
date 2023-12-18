@@ -88,14 +88,14 @@
         <h2 class="mb-8 text-2xl font-bold text-gray-900 dark:text-white">Related articles</h2>
         <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             @php
-                $posts = App\Models\Post::where('status','active')->with('category','user')->latest()->take(12)->get();
+                $posts = \App\Models\Post::where('status','active')->latest()->take(12)->get();
             @endphp
 
             @foreach ($posts as $post)
                 <article class="max-w-xs p-3 border flex flex-col relative">
                     <div>
                         <a href="#">
-                            <img src="{{ (!empty($data->thumbnail)) ? asset('uploads/'.$data->thumbnail) : asset('uploads/no_image.jpg') }}"
+                            <img src="{{ (!empty($post->thumbnail)) ? asset('uploads/'.$post->thumbnail) : asset('uploads/no_image.jpg') }}"
                                 class="mb-5 rounded-lg w-full" alt="{{ $post->title }}">
                         </a>
                         <h2 class="mb-2 text-xl font-bold leading-tight text-gray-900 dark:text-white">

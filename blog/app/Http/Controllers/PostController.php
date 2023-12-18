@@ -104,7 +104,9 @@ class PostController extends Controller
         $tagId = implode( ",", $request->tag_id );
 
         if ( $image = $request->file( 'thumbnail' ) ) {
-            unlink(public_path('uploads/'.$post->thumbnail));
+            if ( $post->thumbnail && file_exists( public_path( 'uploads/' . $post->thumbnail ) ) ) {
+                unlink( public_path( 'uploads/' . $post->thumbnail ) );
+            }
             $file_name = hexdec( uniqid() ) . '.' . $image->getClientOriginalExtension();
             Image::make( $image )->save( 'uploads/' . $file_name );
         }
