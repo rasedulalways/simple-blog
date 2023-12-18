@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignId('post_id')->constrained('posts')->onDelete('cascade');
             $table->unsignedBigInteger('parent_id')->nullable();
             $table->text('comment');
+            $table->enum( 'status', ['1', '0'] )->default( '0' );
             $table->timestamps();
         });
     }
