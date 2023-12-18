@@ -17,7 +17,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::with('category','user')->orderBy( 'id', 'asc' )->paginate( 5 );
+        $posts = Post::with('category','user')->orderBy( 'id', 'desc' )->paginate( 5 );
         return view( 'post.index', compact( 'posts' ) );
     }
 
@@ -128,6 +128,8 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+        unlink( public_path( 'uploads/' . $post->thumbnail ) );
+
         $post->delete();
 
         return redirect()->route( 'post.index' )->with( 'success', 'Post deleted successfully!' );
