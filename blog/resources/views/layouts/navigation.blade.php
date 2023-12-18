@@ -31,6 +31,10 @@
                     <x-nav-link :href="route('comment.index')" :active="request()->routeIs('comment.index')">
                         {{ __('Comment') }}
                     </x-nav-link>
+
+                    <x-nav-link :href="route('home')" :active="request()->routeIs('home')">
+                        {{ __('Home') }}
+                    </x-nav-link>
                 </div>
             </div>
 

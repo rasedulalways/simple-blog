@@ -1,6 +1,5 @@
 @php
-$usr_comments = App\Models\Comment::where('status','1')->where('parent_id',
-null)->where('post_id',$post->id)->latest()->get();
+$usr_comments = App\Models\Comment::where('status','1')->where('parent_id', null)->where('post_id',$post->id)->latest()->get();
 @endphp
 
 
@@ -52,26 +51,26 @@ null)->where('post_id',$post->id)->latest()->get();
                     <div class="flex justify-between items-center mb-6">
                         <h2 class="text-lg lg:text-2xl font-bold text-gray-900 dark:text-white">Discussion (20)</h2>
                     </div>
-                    @auth
-                    <form class="mb-6" action="{{ route('comment.store') }}" method="POST">
-                        @csrf
+@auth
+<form class="mb-6" action="{{ route('comment.store') }}" method="POST">
+    @csrf
 
-                        <input type="hidden" name="post_id" value="{{ $post->id }}">
+    <input type="hidden" name="post_id" value="{{ $post->id }}">
 
-                        <div
-                            class="py-2 px-4 mb-4 bg-white rounded-lg rounded-t-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
-                            <label for="comment" class="sr-only">Your comment</label>
-                            <textarea id="comment" name="comment" rows="6"
-                                class="px-0 w-full text-sm text-gray-900 border-0 focus:ring-0 dark:text-white dark:placeholder-gray-400 dark:bg-gray-800"
-                                placeholder="Write a comment..." required></textarea>
-                        </div>
-                        <button type="submit">
-                            Post comment
-                        </button>
-                    </form>
-                    @else
-                    <p class="text-2xl text-bold text-red-500">At First Login Then Comment</p>
-                    @endauth
+    <div
+        class="py-2 px-4 mb-4 bg-white rounded-lg rounded-t-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+        <label for="comment" class="sr-only">Your comment</label>
+        <textarea id="comment" name="comment" rows="6"
+            class="px-0 w-full text-sm text-gray-900 border-0 focus:ring-0 dark:text-white dark:placeholder-gray-400 dark:bg-gray-800"
+            placeholder="Write a comment..." required></textarea>
+    </div>
+    <button type="submit">
+        Post comment
+    </button>
+</form>
+@else
+<p class="text-2xl text-bold text-red-500">At First Login Then Comment</p>
+@endauth
 
 
 
@@ -114,10 +113,9 @@ null)->where('post_id',$post->id)->latest()->get();
                         </div>
                     </article>
 
-                    @php
-                    $rep_comments = App\Models\Comment::where('status','1')->where('parent_id', $item->id
-                    )->where('post_id',$post->id)->latest()->get();
-                    @endphp
+@php
+$rep_comments = App\Models\Comment::where('status','1')->where('parent_id', $item->id)->where('post_id',$post->id)->latest()->get();
+@endphp
 
                     @foreach ($rep_comments as $replay_com)
 

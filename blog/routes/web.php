@@ -22,7 +22,7 @@ use App\Http\Controllers\FrontendController;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 
 Route::get('/blog-details', function () {
     return view('blog_details');
