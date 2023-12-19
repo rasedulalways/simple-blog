@@ -109,8 +109,7 @@ null)->where('post_id',$post->id)->latest()->get();
                         </article>
 
                         @php
-                        $rep_comments = App\Models\Comment::where('status','1')->where('parent_id',
-                        $item->id)->where('post_id',$post->id)->latest()->get();
+                        $rep_comments = App\Models\Comment::where('status','1')->where('parent_id', $item->id)->where('post_id',$post->id)->latest()->get();
                         @endphp
 
                         @foreach ($rep_comments as $replay_com)

@@ -86,8 +86,7 @@ null)->latest()->get();
                         </article>
 
                         @php
-                        $rep_comments = App\Models\Comment::where('status','1')->where('parent_id',
-                        $item->id)->latest()->get();
+                        $rep_comments = App\Models\Comment::where('status','1')->where('parent_id', $item->id)->latest()->get();
                         @endphp
 
                         @foreach ($rep_comments as $replay_com)
@@ -117,7 +116,7 @@ null)->latest()->get();
                                 </button>
                             </footer>
                             <p class="ml-6 border p-2 inline-block rounded-lg bg-gray-100 shadow-md">
-                                {{ $item->comment }}</p>
+                                {{ $replay_com->comment }}</p>
 
                         </article>
 
