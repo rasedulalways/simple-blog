@@ -139,7 +139,7 @@ null)->where('post_id',$post->id)->latest()->get();
                                     <span class="sr-only">Comment settings</span>
                                 </button>
                             </footer>
-                            <p class="ml-6 border-emerald-100 bg-gray-100">{{ $replay_com->comment }}</p>
+                            <p class="ml-6 border p-2 inline-block rounded-lg bg-gray-100 shadow-md">{{ $replay_com->comment }}</p>
 
                         </article>
 

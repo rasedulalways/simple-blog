@@ -45,7 +45,7 @@ class CommentController extends Controller {
             'post_id'    => $post_id,
             'parent_id'  => $id,
             'comment'    => $request->comment,
-            'status'     => '0',
+            'status'     => '1',
             'created_at' => Carbon::now(),
         ] );
 
@@ -60,8 +60,13 @@ class CommentController extends Controller {
     }
 
     public function destroy( Comment $comment ) {
-
         $comment->delete();
+
+        $replies = Comment::where( 'parent_id', $comment->id )->get();
+
+        foreach ( $replies as $reply ) {
+            $reply->delete();
+        }
 
         return redirect()->route( 'comment.index' )->with( 'success', 'Comment deleted successfully!' );
     }
