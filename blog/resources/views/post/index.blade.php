@@ -53,8 +53,7 @@
                                     class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
                                     Post content
                                 </th>
-                                <th scope="col"
-                                    class="py-3.5 pl-4 pr-3 text-right text-sm font-semibold sm:pr-6">
+                                <th scope="col" class="py-3.5 pl-4 pr-3 text-right text-sm font-semibold sm:pr-6">
                                     Action
                                 </th>
                             </tr>
@@ -71,7 +70,8 @@
                                 </td>
 
                                 <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
-                                    <img src="{{ (!empty($data->thumbnail)) ? asset('uploads/'.$data->thumbnail) : asset('uploads/no_image.jpg') }}" alt="" style="widht: 100px; height: 40px">
+                                    <img src="{{ (!empty($data->thumbnail)) ? asset('uploads/'.$data->thumbnail) : asset('uploads/no_image.jpg') }}"
+                                        alt="" style="widht: 100px; height: 40px">
                                 </td>
 
                                 <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
@@ -86,8 +86,10 @@
                                     {!! Str::limit($data->content .". . . . . .", 50) !!}
                                 </td>
 
-                                <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6 flex justify-end">
-                                    <a href="{{ route('post.edit',$data->id) }}" class="text-indigo-600 hover:text-indigo-900">
+                                <td
+                                    class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6 flex justify-end">
+                                    <a href="{{ route('post.edit',$data->id) }}"
+                                        class="text-indigo-600 hover:text-indigo-900">
                                         Edit
                                     </a>
                                     <div class="ml-3">

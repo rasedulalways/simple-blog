@@ -49,61 +49,69 @@ null)->where('post_id',$post->id)->latest()->get();
 
                 <section class="not-format mt-20">
 
-                    <div class="flex justify-between items-center mb-6">
-                        <h2 class="text-lg lg:text-2xl font-bold text-gray-900 dark:text-white">Discussion (20)</h2>
-                    </div>
-                    @auth
-                    <form class="mb-6" action="{{ route('comment.store') }}" method="POST">
-                        @csrf
-
-                        <input type="hidden" name="post_id" value="{{ $post->id }}">
-
-                        <div
-                            class="py-2 px-4 mb-4 bg-white rounded-lg rounded-t-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
-                            <label for="comment" class="sr-only">Your comment</label>
-                            <textarea id="comment" name="comment" rows="6"
-                                class="px-0 w-full text-sm text-gray-900 border-0 focus:ring-0 dark:text-white dark:placeholder-gray-400 dark:bg-gray-800"
-                                placeholder="Write a comment..." required></textarea>
+                    <div>
+                        <div class="flex justify-between items-center mb-6">
+                            <h2 class="text-lg lg:text-2xl font-bold text-gray-900 dark:text-white">Discussion (20)</h2>
                         </div>
-                        <button type="submit">
-                            Post comment
-                        </button>
-                    </form>
-                    @else
-                    <p class="text-2xl text-bold text-red-500">At First Login Then Comment</p>
-                    @endauth
+                        @auth
+                        <form class="mb-6" action="{{ route('comment.store') }}" method="POST">
+                            @csrf
 
-                    @foreach ($usr_comments as $item)
-                    <article class="p-6 mb-6 text-base bg-white rounded-lg dark:bg-gray-900">
-                        <footer class="flex justify-between items-center mb-2">
-                            <div class="flex items-center">
-                                <p
-                                    class="inline-flex items-center mr-3 font-semibold text-sm text-gray-900 dark:text-white">
-                                    <img class="mr-2 w-6 h-6 rounded-full"
-                                        src="https://flowbite.com/docs/images/people/profile-picture-2.jpg"
-                                        alt="Michael Gough">{{ $item->user->name }}</p>
-                                <p class="text-sm text-gray-600 dark:text-gray-400"><time pubdate datetime="2022-02-08"
-                                        title="February 8th, 2022">{{ $item->created_at->format('M d, Y') }}</time></p>
+                            <input type="hidden" name="post_id" value="{{ $post->id }}">
+
+                            <div
+                                class="py-2 px-4 mb-4 bg-white rounded-lg rounded-t-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+                                <label for="comment" class="sr-only">Your comment</label>
+                                <textarea id="comment" name="comment" rows="6"
+                                    class="p-2 w-full text-sm text-gray-900 border-0 focus:ring-0 dark:text-white dark:placeholder-gray-400 dark:bg-gray-800 outline-none"
+                                    placeholder="Write a comment..." required></textarea>
                             </div>
-                            <button id="dropdownComment1Button" data-dropdown-toggle="dropdownComment1"
-                                class="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:text-gray-400 dark:bg-gray-900 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-                                type="button">
-                                <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                    fill="currentColor" viewBox="0 0 16 3">
-                                    <path
-                                        d="M2 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6.041 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM14 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z" />
-                                </svg>
-                                <span class="sr-only">Comment settings</span>
+                            <button type="submit"
+                                class="bg-green-500 px-4 py-1 rounded-md hover:bg-green-600 text-white">
+                                Send
                             </button>
-                        </footer>
+                        </form>
+                        @else
+                        <p class="text-2xl text-bold text-red-500 border rounded-xl px-6 py-6">You will be allowed to
+                            comment after login !</p>
+                        @endauth
+                    </div>
 
-                        <p class="ml-6 border p-2 inline-block rounded-lg">{{ $item->comment }}</p>
-                    </article>
+                    <div class="border rounded-xl w-full h-96 overflow-y-auto">
+                        @foreach ($usr_comments as $item)
+                        <article class="p-6 mb-6 text-base bg-white rounded-lg dark:bg-gray-900">
+                            <footer class="flex justify-between items-center mb-2">
+                                <div class="flex items-center">
+                                    <p
+                                        class="inline-flex items-center mr-3 font-semibold text-sm text-gray-900 dark:text-white">
+                                        <img class="mr-2 w-6 h-6 rounded-full"
+                                            src="https://flowbite.com/docs/images/people/profile-picture-2.jpg"
+                                            alt="Michael Gough">{{ $item->user->name }}</p>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400"><time pubdate
+                                            datetime="2022-02-08"
+                                            title="February 8th, 2022">{{ $item->created_at->format('M d, Y') }}</time>
+                                    </p>
+                                </div>
+                                <button id="dropdownComment1Button" data-dropdown-toggle="dropdownComment1"
+                                    class="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:text-gray-400 dark:bg-gray-900 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                                    type="button">
+                                    <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                        fill="currentColor" viewBox="0 0 16 3">
+                                        <path
+                                            d="M2 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6.041 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM14 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z" />
+                                    </svg>
+                                    {{-- <span class="sr-only">Comment settings</span> --}}
+                                </button>
+                            </footer>
 
-                    @php
-                    $rep_comments = App\Models\Comment::where('status','1')->where('parent_id',
-                    $item->id)->where('post_id',$post->id)->latest()->get();
-                    @endphp
+                            <p class="ml-6 border p-2 inline-block rounded-lg bg-gray-100 shadow-md">
+                                {{ $item->comment }}</p>
+                        </article>
+
+                        @php
+                        $rep_comments = App\Models\Comment::where('status','1')->where('parent_id',
+                        $item->id)->where('post_id',$post->id)->latest()->get();
+                        @endphp
 
                         @foreach ($rep_comments as $replay_com)
 
@@ -115,8 +123,10 @@ null)->where('post_id',$post->id)->latest()->get();
                                         <img class="mr-2 w-6 h-6 rounded-full"
                                             src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
                                             alt="Jese Leos">{{ $replay_com->user->name }}</p>
-                                    <p class="text-sm text-gray-600 dark:text-gray-400"><time pubdate datetime="2022-02-12"
-                                            title="February 12th, 2022">{{ $replay_com->created_at->format('M d, Y') }}</time></p>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400"><time pubdate
+                                            datetime="2022-02-12"
+                                            title="February 12th, 2022">{{ $replay_com->created_at->format('M d, Y') }}</time>
+                                    </p>
                                 </div>
                                 <button id="dropdownComment2Button" data-dropdown-toggle="dropdownComment2"
                                     class="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:text-gray-400 dark:bg-gray-900 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
@@ -129,13 +139,14 @@ null)->where('post_id',$post->id)->latest()->get();
                                     <span class="sr-only">Comment settings</span>
                                 </button>
                             </footer>
-                            <p class="ml-6 border-emerald-100">{{ $replay_com->comment }}</p>
+                            <p class="ml-6 border-emerald-100 bg-gray-100">{{ $replay_com->comment }}</p>
 
                         </article>
 
                         @endforeach
 
-                    @endforeach
+                        @endforeach
+                    </div>
                 </section>
 
 
@@ -236,7 +247,8 @@ null)->where('post_id',$post->id)->latest()->get();
                                         d="M11.241 9.817c-.36.275-.801.425-1.255.427-.428 0-.845-.138-1.187-.395L0 2.6V14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2.5l-8.759 7.317Z" />
                                 </svg>
                             </div>
-                            <input class="block p-3 pl-9 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 sm:rounded-none sm:rounded-l-lg focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                            <input
+                                class="block p-3 pl-9 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 sm:rounded-none sm:rounded-l-lg focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                 placeholder="Enter your email" type="email" id="email" required="">
                         </div>
                         <div>
