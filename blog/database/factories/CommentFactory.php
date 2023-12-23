@@ -19,6 +19,7 @@ class CommentFactory extends Factory
         return [
             'user_id' => \App\Models\User::get()->random()->id,
             'post_id' => \App\Models\Post::get()->random()->id,
+            'parent_id' => rand(1, 10),
             'comment' => $this->faker->paragraph(1),
             'status' => $this->faker->randomElement(['0', '1']),
         ];
